@@ -1,0 +1,173 @@
+.dashboard-container {
+  width: 100%;
+  background: linear-gradient(120deg, #89f7fe, #66a6ff);
+  animation: backgroundAnimation 10s infinite alternate;
+  perspective: 1000px;
+  overflow: hidden;
+}
+
+@keyframes backgroundAnimation {
+  0% {
+      background: linear-gradient(120deg, #89f7fe, #66a6ff);
+  }
+  50% {
+      background: linear-gradient(120deg, #ff9a9e, #fad0c4);
+  }
+  100% {
+      background: linear-gradient(120deg, #a18cd1, #fbc2eb);
+  }
+}
+
+.summary-cards {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+.summary-card {
+  flex: 1;
+  background-color: white;
+  border-radius: var(--border-radius);
+  padding: 20px;
+  box-shadow: var(--box-shadow);
+  transition: transform 0.5s ease, box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.summary-card:hover {
+  transform: rotateY(15deg) translateZ(10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.dashboard-content {
+  display: flex;
+  gap: 20px;
+  animation: slideIn 1s ease-in-out;
+}
+
+@keyframes slideIn {
+  from {
+      opacity: 0;
+      transform: translateX(-20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateX(0);
+  }
+}
+
+.category-chart,
+.recent-transactions {
+  flex: 1;
+  background-color: white;
+  border-radius: var(--border-radius);
+  padding: 20px;
+  box-shadow: var(--box-shadow);
+  transition: transform 0.5s ease, box-shadow 0.3s ease;
+}
+
+.category-chart:hover,
+.recent-transactions:hover {
+  transform: scale(1.05) rotateX(10deg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.recent-list {
+  list-style: none;
+  margin-top: 15px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+      transform: scale(1);
+  }
+  50% {
+      transform: scale(1.05);
+  }
+}
+
+.recent-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid var(--border-color);
+  align-items: center;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.recent-item:hover {
+  transform: translateZ(20px) rotateY(10deg);
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.animated-image {
+  width: 150px;
+  height: 150px;
+  animation: bounce 2s infinite ease-in-out;
+}
+
+@keyframes bounce {
+  0%, 100% {
+      transform: translateY(0);
+  }
+  50% {
+      transform: translateY(-20px);
+  }
+}
+
+@media (max-width: 768px) {
+  .summary-cards {
+      flex-direction: column;
+      gap: 15px;
+  }
+
+  .dashboard-content {
+      flex-direction: column;
+      gap: 20px;
+  }
+
+  .summary-card,
+  .category-chart,
+  .recent-transactions {
+      padding: 15px;
+  }
+
+  .recent-item {
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas:
+          "date amount"
+          "desc desc"
+          "cat cat";
+      gap: 5px;
+  }
+
+  .recent-date {
+      grid-area: date;
+  }
+
+  .recent-amount {
+      grid-area: amount;
+  }
+
+  .recent-description {
+      grid-area: desc;
+  }
+
+  .recent-category {
+      grid-area: cat;
+  }
+}
